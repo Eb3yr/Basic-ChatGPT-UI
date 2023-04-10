@@ -25,7 +25,7 @@ class MessageList:
     def ClearMSG(self):
         self._msgs.clear()
 
-def get_messages(input_userlist, input_responselist, sysmsg):
+def get_messages(input_userlist, input_responselist):
     msgList = MessageList()
     msgList.ClearMSG()
     msgList.AddNew("system", sys_box.get("9.0", "end")) # Only 1 sysmsg
@@ -54,7 +54,7 @@ def get_response():
     # Generate chat completion
     response = openai.ChatCompletion.create(
         model=model_engine,
-        messages = get_messages(input_userlist, input_responselist, "").GetList(),
+        messages = get_messages(input_userlist, input_responselist).GetList(),
         stream=True,
         frequency_penalty=0.23
         )
